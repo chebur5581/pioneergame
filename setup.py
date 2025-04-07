@@ -8,23 +8,22 @@ def readme():
 
 setup(
     name='pioneergame',
-    version='0.0.1',
+    version='0.0.3',
     author='chebur5581',
     author_email='chebur5581@gmail.com',
     description='Simple Pygame plugin for small kids',
     long_description=readme(),
     long_description_content_type='text/markdown',
-    url='your_url',
+    url='https://github.com/chebur5581/pioneergame',
     packages=find_packages(),
-    install_requires=['requests>=2.25.1'],
+    install_requires=['pygame>=2.6.0'],
     classifiers=[
         'Programming Language :: Python :: 3.11',
-        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent'
     ],
-    keywords='files speedfiles ',
+    keywords='Games Pygame kis Learning',
     project_urls={
-        'GitHub': 'your_github'
+        'GitHub': 'https://github.com/chebur5581/pioneergame'
     },
-    python_requires='>=3.6'
+    python_requires='>=3.9'
 )

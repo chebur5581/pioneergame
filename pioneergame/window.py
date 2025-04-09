@@ -11,7 +11,7 @@ class Window:
 
         self.clock = pg.time.Clock()
 
-        self.caption = 'EasyPygame Window' if caption is None else caption
+        self.caption = 'Pioneer Window' if caption is None else caption
         pg.display.set_caption(self.caption)
 
         self._mouse = ['left', 'middle', 'right']

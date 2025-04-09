@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='pioneergame',
-    version='0.0.3',
+    version='0.0.7',
     author='chebur5581',
     author_email='chebur5581@gmail.com',
     description='Simple Pygame plugin for small kids',
@@ -21,9 +21,10 @@ setup(
         'Programming Language :: Python :: 3.11',
         'Operating System :: OS Independent'
     ],
-    keywords='Games Pygame kis Learning',
+    keywords='Games Pygame kis Learning pioneergame',
     project_urls={
         'GitHub': 'https://github.com/chebur5581/pioneergame'
     },
-    python_requires='>=3.9'
+    python_requires='>=3.9',
+    package_data={'pioneergame': ['Fixedsys.ttf']}
 )

@@ -15,6 +15,7 @@ while True:  # main loop
 ```
 #
 ### Drawing simple objects ###
+
 ```python
 from pioneergame import Window, Rect, Circle
 
@@ -23,16 +24,18 @@ fps = 80
 
 square = Rect(window, 10, 10, 200, 200, 'red')
 rectangle = Rect(window, 700, 200, 150, 300, 'orange')
+# Rect(Window, x, y, width, 'height', color)
 
 circle = Circle(window, 800, 100, 50, 'white')
 bublik = Circle(window, 500, 500, 75, 'pink', 30)
+# Circle(Window, x, y, radius, color, thickness)
 
 while True:
     window.fill('black')
 
     square.draw()
     rectangle.draw()
-   
+
     circle.draw()
     bublik.draw()
 
@@ -43,13 +46,15 @@ while True:
 #
 
 ### Example. DVD screen ###
+
 ```python
 from pioneergame import Window, Label
 
 window = Window(1024, 768, 'DVD test')
 
-dvd = Label(window, 10, 10, 'grey', 'DVD', font='Impact', size=70, italic=True)
-state = Label(window, 10, 10, 'grey', 'state: IDLE', italic=True)
+dvd = Label(window, 10, 10, 'DVD' 'grey', font='Impact', size=70, italic=True)
+state = Label(window, 10, 10, 'state: IDLE', 'grey', italic=True)
+# Label(Window, x, y, text, color, size, font, italic)
 
 dx, dy = 3, 3
 
@@ -73,6 +78,7 @@ while True:
 
 ### Ping Pong Game ###
 ![pong](https://media1.tenor.com/m/T3H92Qstl68AAAAC/p-ong.gif)
+
 ```python
 from pioneergame import Window, Circle, Rect, Label
 

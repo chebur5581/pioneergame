@@ -1,5 +1,7 @@
 simple pygame plugin for kids.
 
+
+
 ### Template. Empty window ###
 
 ```python

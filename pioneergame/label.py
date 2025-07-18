@@ -4,6 +4,7 @@ from .rect import Rect
 from .window import Window
 
 
+# TODO: textbox/multiple line label
 class Label:
     def __init__(self, window: Window, x, y, text: str = 'Sample Text',
                  color: str | pg.Color | tuple[int, int, int] = 'purple',
@@ -19,6 +20,10 @@ class Label:
             self.font = pg.font.SysFont(font, size, False, italic)
 
         self._text_surface = self.font.render(self.text, True, self.color)
+
+    def set_color(self, color: str | pg.Color | list[int, int, int] | tuple[int, int, int]) -> None:
+        self.color = pg.Color(color)
+        self._text_surface = self.font.render(self.text, True, color)
 
     def set_text(self, new_text: str | int | float) -> None:
         self.text = str(new_text)

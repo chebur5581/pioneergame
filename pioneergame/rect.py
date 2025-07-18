@@ -1,3 +1,4 @@
+from pkg_resources import resource_filename
 import pygame as pg
 from .window import Window
 
@@ -20,4 +21,28 @@ class Rect(pg.Rect):  # add class circle
     def pos(self) -> tuple[int, int]:
         return self.x, self.y
 
-    # TODO: better collision checking and maybe some cool effects
+    def collide_bottom(self, other, collision_tolerance: int = 2) -> bool:
+        return self.colliderect(other) and abs(self.bottom - other.top) < collision_tolerance
+
+    def collide_top(self, other, collision_tolerance: int = 2) -> bool:
+        return self.colliderect(other) and abs(self.top - other.bottom) < collision_tolerance
+
+    def collide_right(self, other, collision_tolerance: int = 2) -> bool:
+        return self.colliderect(other) and abs(self.right - other.left) < collision_tolerance
+
+    def collide_left(self, other, collision_tolerance: int = 2) -> bool:
+        return self.colliderect(other) and abs(self.left - other.right) < collision_tolerance
+
+    def collision(self, other, collision_tolerance: int = 2) -> str:  # left, right, top, bottom, no
+        if not self.colliderect(other):
+            return 'no'
+        if abs(self.bottom - other.top) < collision_tolerance:
+            return 'bottom'
+        if abs(self.top - other.bottom) < collision_tolerance:
+            return 'top'
+        if abs(self.right - other.left) < collision_tolerance:
+            return 'right'
+        if abs(self.left - other.right) < collision_tolerance:
+            return 'left'
+
+    # TODO: make collision resolving

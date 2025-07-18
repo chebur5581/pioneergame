@@ -1,9 +1,9 @@
 from pioneergame import Window
 
-window = Window(1300, 700)
+window = Window(width=1500, height=700)
 fps = 80
 
 while True:
-    window.fill('black')
+    window.fill('orange')
 
     window.update(fps)

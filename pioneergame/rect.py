@@ -1,4 +1,4 @@
-from pkg_resources import resource_filename
+from random import randint
 import pygame as pg
 from .window import Window
 
@@ -20,6 +20,10 @@ class Rect(pg.Rect):  # add class circle
     @property
     def pos(self) -> tuple[int, int]:
         return self.x, self.y
+
+    def random_teleport(self) -> None:
+        self.x = randint(0, self.window.width - self.width)
+        self.y = randint(0, self.window.height - self.height)
 
     def collide_bottom(self, other, collision_tolerance: int = 2) -> bool:
         return self.colliderect(other) and abs(self.bottom - other.top) < collision_tolerance

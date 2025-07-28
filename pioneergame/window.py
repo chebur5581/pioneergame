@@ -71,5 +71,5 @@ class Window:
         self.__close = True
 
     @staticmethod
-    def set_caption(text: str) -> None:
-        pg.display.set_caption(text)
+    def set_caption(text) -> None:
+        pg.display.set_caption(str(text))

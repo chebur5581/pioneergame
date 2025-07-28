@@ -8,10 +8,10 @@ def readme():
 
 setup(
     name='pioneergame',
-    version='0.0.10',
+    version='0.0.12',
     author='chebur5581',
     author_email='chebur5581@gmail.com',
-    description='Simple Pygame plugin for small kids',
+    description='Simple Pygame wrap for small kids',
     long_description=readme(),
     long_description_content_type='text/markdown',
     url='https://github.com/chebur5581/pioneergame',
@@ -19,7 +19,7 @@ setup(
     install_requires=['pygame>=2.6.0', 'setuptools'],
     classifiers=[
         'Programming Language :: Python :: 3.11',
-        'Operating System :: OS Independent'
+        'Operating System :: Microsoft :: Windows'
     ],
     keywords='Games Pygame kis Learning pioneergame',
     project_urls={

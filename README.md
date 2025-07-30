@@ -1,107 +1,107 @@
-РџСЂРѕСЃС‚Р°СЏ РѕР±С‘СЂС‚РєР° pygame РґР»СЏ РґРµС‚РµР№
+Простая обёртка pygame для детей
 
 ### Blank. Empty window ###
 
 ```python
 from pioneergame import Window
 
-my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
-    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
 
-    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
 ```
 
 #
 
 ### Drawing simple objects ###
-![figures](.\image\figures.png)
+![figures](https://github.com/chebur5581/pioneergame/blob/main/image/figures.png?raw=true)
 ```python
 from pioneergame import Window, Rect, Circle
 
-my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-# СЃРѕР·РґР°РЅРёРµ СЃРёРЅРµРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° СЃ С€РёСЂРёРЅРѕР№ 100 Рё РІС‹СЃРѕС‚РѕР№ 50
+# создание синего прямоугольника с шириной 100 и высотой 50
 block = Rect(my_window, x=10, y=40, width=100, height=50, color='blue')
 
-# СЃРѕР·РґР°РЅРёРµ РѕСЂР°РЅР¶РµРІРѕРіРѕ РєРІР°РґСЂР°С‚Р° СЂР°Р·РјРµСЂРѕРј 60 РЅР° 60, РєРѕС‚РѕСЂС‹Р№ РїРѕС‚РѕРј Р±СѓРґРµРј РґРІРёРіР°С‚СЊ
+# создание оранжевого квадрата размером 60 на 60, который потом будем двигать
 moving_square = Rect(my_window, x=100, y=200, width=60, height=60, color='orange')
 
-# СЃРѕР·РґР°РЅРёРµ РєСЂР°СЃРЅРѕРіРѕ РєСЂСѓРіР° СЃ СЂР°РґРёСѓСЃРѕРј 20, РєРѕС‚РѕСЂС‹Р№ С‚РѕР¶Рµ Р±СѓРґРµРј РґРІРёРіР°С‚СЊ
+# создание красного круга с радиусом 20, который тоже будем двигать
 moving_circle = Circle(my_window, x=1000, y=50, radius=20, color='red')
 
-# СЃРѕР·РґР°РЅРёРµ СЃРµСЂРѕРіРѕ РєРѕР»СЊС†Р° СЃ СЂР°РґРёСѓСЃРѕРј 80 Рё С‚РѕР»С‰РёРЅРѕР№ СЃС‚РµРЅРєРё 5
+# создание серого кольца с радиусом 80 и толщиной стенки 5
 bublik = Circle(my_window, x=500, y=350, radius=80, color='grey', thickness=5)
 
-while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
-    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
 
-    block.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
-    moving_square.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РєРІР°РґСЂР°С‚Р°
-    moving_circle.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
+    block.draw()  # отрисовка прямоугольника
+    moving_square.draw()  # отрисовка квадрата
+    moving_circle.draw()  # отрисовка круга
     bublik.draw()
 
-    # РµСЃР»Рё РїСЂР°РІР°СЏ СЃС‚РѕСЂРѕРЅР° РєРІР°РґСЂР°С‚Р° РЅР°С…РѕРґРёС‚СЃСЏ Р»РµРІРµРµ С‡РµРј РїСЂР°РІР°СЏ РіСЂР°РЅРёС†Р° СЌРєСЂР°РЅР°, С‚Рѕ РјС‹ РґРІРёРіР°РµРј РєРІР°РґСЂР°С‚ РІРїСЂР°РІРѕ
+    # если правая сторона квадрата находится левее чем правая граница экрана, то мы двигаем квадрат вправо
     if moving_square.right < my_window.right:
-        moving_square.x += 5  # РґРІРёР¶РµРЅРёРµ РєРІР°РґСЂР°С‚Р° РІРїСЂР°РІРѕ РЅР° 1 РїРёРєСЃРµР»СЊ
+        moving_square.x += 5  # движение квадрата вправо на 1 пиксель
 
-    moving_circle.x -= 1  # РґРІРёР¶РµРЅРёРµ РєСЂСѓРіР° РІ Р»РµРІРѕ
-    moving_circle.y += 1  # РґРІРёР¶РµРЅРёРµ РєСЂСѓРіР° РІРЅРёР·
+    moving_circle.x -= 1  # движение круга в лево
+    moving_circle.y += 1  # движение круга вниз
 
-    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
 
 ```
 
 #
 
 ### Keyboard and text ###
-![keyboard](.\image\keyboard_and_text.png)
+![keyboard](https://github.com/chebur5581/pioneergame/blob/main/image/keyboard_and_text.png?raw=true)
 ```python
 from pioneergame import Window, Label
 
-my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-# СЃРѕР·РґР°РЅРёРµ С‚РµРєСЃС‚Р° Р±РµР»РѕРіРѕ С†РІРµС‚Р°
-my_text = Label(my_window, x=300, y=350, text='РќР°Р¶РјРё СЃС‚СЂРµР»РѕС‡РєСѓ РІРїСЂР°РІРѕ, РІР»РµРІРѕ, РІРІРµСЂС… РёР»Рё РІРЅРёР·', color='white')
+# создание текста белого цвета
+my_text = Label(my_window, x=300, y=350, text='Нажми стрелочку вправо, влево, вверх или вниз', color='white')
 
-while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
-    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
 
-    my_text.draw()  # РѕС‚СЂРёСЃРѕРІРєР° С‚РµРєСЃС‚Р°
+    my_text.draw()  # отрисовка текста
 
-    if my_window.get_key('left'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІР»РµРІРѕ
-        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІР»РµРІРѕ')  # СѓСЃС‚Р°РЅРѕРІРєР° РЅРѕРІРѕРіРѕ С‚РµРєСЃС‚Р°
-    if my_window.get_key('right'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРїСЂР°РІРѕ
-        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРїСЂР°РІРѕ')
-    if my_window.get_key('up'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРІРµСЂС…
-        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРІРµСЂС…')
-    if my_window.get_key('down'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРЅРёР·
-        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРЅРёР·')
+    if my_window.get_key('left'):  # если нажата стрелочка влево
+        my_text.set_text('была нажата стрелочка влево')  # установка нового текста
+    if my_window.get_key('right'):  # если нажата стрелочка вправо
+        my_text.set_text('была нажата стрелочка вправо')
+    if my_window.get_key('up'):  # если нажата стрелочка вверх
+        my_text.set_text('была нажата стрелочка вверх')
+    if my_window.get_key('down'):  # если нажата стрелочка вниз
+        my_text.set_text('была нажата стрелочка вниз')
 
-    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
 ```
 
 ### Fireworks ###
-![fireworks](.\image\fireworks.png)
+![fireworks](https://github.com/chebur5581/pioneergame/blob/main/image/fireworks.png?raw=true)
 ```python
 from pioneergame import Window, explode, explosion_update
 
-my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
-    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
 
-    if my_window.get_mouse_button('left'):  # РµСЃР»Рё Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° Р»РµРІР°СЏ РєРЅРѕРїРєР° РјС‹С€Рё
+    if my_window.get_mouse_button('left'):  # если была нажата левая кнопка мыши
         explode(my_window, pos=my_window.mouse_position(), size=5, color='orange')
 
-    explosion_update()  # РѕР±СЂР°Р±РѕС‚РєР° РІСЃРµС… РІР·СЂС‹РІРѕРІ
+    explosion_update()  # обработка всех взрывов
 
-    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
 ```
 
 ### Example. DVD screen ###
-![dvd](.\image\dvd.png)
+![dvd](https://github.com/chebur5581/pioneergame/blob/main/image/DVD.png?raw=true)
 ```python
 from pioneergame import Window, Label
 
@@ -132,7 +132,7 @@ while True:
 
 ### Ping Pong ###
 
-![pong](.\image\pong.png)
+![pong](https://github.com/chebur5581/pioneergame/blob/main/image/pong.png?raw=true)
 ```python
 from pioneergame import Window, Circle, Rect, Label
 

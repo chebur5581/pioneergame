@@ -2,8 +2,8 @@ from pioneergame import Window, Label
 
 window = Window(1024, 768, 'DVD test')
 
-dvd = Label(window, 10, 10, 'grey', 'DVD', font='Impact', size=70, italic=True)
-state = Label(window, 10, 10, 'grey', 'state: IDLE', italic=True)
+dvd = Label(window, 10, 10, 'DVD', 'grey', font='Impact', size=70, italic=True)
+state = Label(window, 10, 10, 'state: IDLE', 'grey', italic=True)
 
 dx, dy = 3, 3
 

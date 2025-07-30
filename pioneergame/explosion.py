@@ -1,5 +1,5 @@
 import pygame
-from ..window import Window
+from .window import Window
 from random import randint
 import math
 

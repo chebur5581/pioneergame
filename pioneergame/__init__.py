@@ -4,4 +4,4 @@ from .rect import Rect
 from .label import Label
 from .button import Button
 from .sprite import Sprite
-from .presets.explosion import explode, explosion_update
+from .explosion import explode, explosion_update

@@ -1,6 +1,6 @@
 from pioneergame import Window, Rect, Circle
 
-my_window = Window(1200, 700, 'my black window')  # создаём главное окно
+my_window = Window(1200, 700, 'Figures')  # создаём главное окно
 
 # создание синего прямоугольника с шириной 100 и высотой 50
 block = Rect(my_window, x=10, y=40, width=100, height=50, color='blue')

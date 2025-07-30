@@ -1,62 +1,114 @@
-simple pygame plugin for kids.
+Простая обёртка pygame для детей
 
-
-
-### Template. Empty window ###
+### Blank. Empty window ###
 
 ```python
 from pioneergame import Window
 
-window = Window(1300, 700)  # 1300x700 window
-fps = 80
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-while True:  # main loop
-    window.fill('black')
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
 
-    window.update(fps)  # update 80 times per second
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
 ```
-#
-### Drawing simple objects ###
 
+#
+
+### Drawing simple objects ###
+![figures](.\image\figures.png)
 ```python
 from pioneergame import Window, Rect, Circle
 
-window = Window(1300, 700)
-fps = 80
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
 
-square = Rect(window, 10, 10, 200, 200, 'red')
-rectangle = Rect(window, 700, 200, 150, 300, 'orange')
-# Rect(Window, x, y, width, 'height', color)
+# создание синего прямоугольника с шириной 100 и высотой 50
+block = Rect(my_window, x=10, y=40, width=100, height=50, color='blue')
 
-circle = Circle(window, 800, 100, 50, 'white')
-bublik = Circle(window, 500, 500, 75, 'pink', 30)
-# Circle(Window, x, y, radius, color, thickness)
+# создание оранжевого квадрата размером 60 на 60, который потом будем двигать
+moving_square = Rect(my_window, x=100, y=200, width=60, height=60, color='orange')
 
-while True:
-    window.fill('black')
+# создание красного круга с радиусом 20, который тоже будем двигать
+moving_circle = Circle(my_window, x=1000, y=50, radius=20, color='red')
 
-    square.draw()
-    rectangle.draw()
+# создание серого кольца с радиусом 80 и толщиной стенки 5
+bublik = Circle(my_window, x=500, y=350, radius=80, color='grey', thickness=5)
 
-    circle.draw()
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
+
+    block.draw()  # отрисовка прямоугольника
+    moving_square.draw()  # отрисовка квадрата
+    moving_circle.draw()  # отрисовка круга
     bublik.draw()
 
-    square.x = square.x + 1
+    # если правая сторона квадрата находится левее чем правая граница экрана, то мы двигаем квадрат вправо
+    if moving_square.right < my_window.right:
+        moving_square.x += 5  # движение квадрата вправо на 1 пиксель
 
-    window.update(fps)
+    moving_circle.x -= 1  # движение круга в лево
+    moving_circle.y += 1  # движение круга вниз
+
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
+
 ```
+
 #
 
-### Example. DVD screen ###
+### Keyboard and text ###
+![keyboard](.\image\keyboard_and_text.png)
+```python
+from pioneergame import Window, Label
 
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
+
+# создание текста белого цвета
+my_text = Label(my_window, x=300, y=350, text='Нажми стрелочку вправо, влево, вверх или вниз', color='white')
+
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
+
+    my_text.draw()  # отрисовка текста
+
+    if my_window.get_key('left'):  # если нажата стрелочка влево
+        my_text.set_text('была нажата стрелочка влево')  # установка нового текста
+    if my_window.get_key('right'):  # если нажата стрелочка вправо
+        my_text.set_text('была нажата стрелочка вправо')
+    if my_window.get_key('up'):  # если нажата стрелочка вверх
+        my_text.set_text('была нажата стрелочка вверх')
+    if my_window.get_key('down'):  # если нажата стрелочка вниз
+        my_text.set_text('была нажата стрелочка вниз')
+
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
+```
+
+### Fireworks ###
+![fireworks](.\image\fireworks.png)
+```python
+from pioneergame import Window, explode, explosion_update
+
+my_window = Window(1200, 700, 'my black window')  # создаём главное окно
+
+while True:  # бесконечный цикл игры
+    my_window.fill('black')  # заполнение экрана чёрным
+
+    if my_window.get_mouse_button('left'):  # если была нажата левая кнопка мыши
+        explode(my_window, pos=my_window.mouse_position(), size=5, color='orange')
+
+    explosion_update()  # обработка всех взрывов
+
+    my_window.update(60)  # обновление экрана с частотой 60 кадров в секунду
+```
+
+### Example. DVD screen ###
+![dvd](.\image\dvd.png)
 ```python
 from pioneergame import Window, Label
 
 window = Window(1024, 768, 'DVD test')
 
-dvd = Label(window, 10, 10, 'DVD' 'grey', font='Impact', size=70, italic=True)
+dvd = Label(window, 10, 10, 'DVD', 'grey', font='Impact', size=70, italic=True)
 state = Label(window, 10, 10, 'state: IDLE', 'grey', italic=True)
-# Label(Window, x, y, text, color, size, font, italic)
 
 dx, dy = 3, 3
 
@@ -75,24 +127,24 @@ while True:
 
     window.update(80)
 ```
+
 #
 
+### Ping Pong ###
 
-### Ping Pong Game ###
-![pong](https://media1.tenor.com/m/T3H92Qstl68AAAAC/p-ong.gif)
-
+![pong](.\image\pong.png)
 ```python
 from pioneergame import Window, Circle, Rect, Label
 
 window = Window(1024, 768)
-fps = 20
+fps = 80
 
 pad1 = Rect(window, 50, 20, 20, 200, color='grey')
-text1 = Label(window, 10, 10, text='0', color='darkgray', size=50)
+text1 = Label(window, 100, 10, text='0', color='darkgray', size=50)
 score1 = 0
 
-pad2 = Rect(window, 954, 20, 20, 200, color='pink')
-text2 = Label(window, 700, 10, color='darkgray', size=50)
+pad2 = Rect(window, 954, 20, 20, 200, color='grey')
+text2 = Label(window, 900, 10, color='darkgray', size=50)
 score2 = 0
 
 ball = Circle(window, 100, 100, radius=10, color='grey')
@@ -102,13 +154,15 @@ dx = ball_speed
 dy = ball_speed
 
 while True:
-    window.fill('green')
+    window.fill('black')
 
     pad1.draw()
     text1.draw()
+    text1.set_text(score1)
 
     pad2.draw()
     text2.draw()
+    text2.set_text(score2)
 
     ball.draw()
 
@@ -121,19 +175,23 @@ while True:
         dy = -dy
 
     if ball.right > window.right:
-        score2 = score2 + 1
+        score1 = score1 + 1
+        ball.x = 512
+        ball.y = 344
     if ball.left < window.left:
         score2 = score2 + 1
+        ball.x = 512
+        ball.y = 344
 
     if window.get_key('w') and pad1.top > window.top:
         pad1.y -= 5
     if window.get_key('s') and pad1.bottom < window.bottom:
         pad1.y += 5
 
-    if window.get_key('up'):
-        pad2.x -= 5
+    if window.get_key('up') and pad2.top > window.top:
+        pad2.y -= 5
     if window.get_key('down') and pad2.bottom < window.bottom:
-        pad2.x += 5
+        pad2.y += 5
 
     if ball.colliderect(pad1):
         dx = ball_speed

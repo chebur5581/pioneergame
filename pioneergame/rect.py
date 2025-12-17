@@ -9,7 +9,7 @@ class Rect(pg.Rect):  # add class circle
         super().__init__(x, y, width, height)
 
         self.window = window
-        self.color = color
+        self.color = pg.Color(color)
 
     def draw(self) -> None:
         pg.draw.rect(self.window.screen, self.color, self)

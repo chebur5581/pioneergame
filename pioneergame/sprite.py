@@ -22,9 +22,10 @@ class Sprite:
         self.attached_to = Rect(window, 0, 0, 0, 0)
 
     @property
-    def get_size(self) -> tuple[int, int]:
+    def size(self) -> tuple[int, int]:
         return self.image.get_size()
 
+    # TODO: make setter
     def set_size(self, size: tuple[int, int] | list[int, int]) -> None:
         self.image = pg.transform.scale(self.image, size)
 
@@ -33,5 +34,8 @@ class Sprite:
         if resize:
             self.set_size(rect.size)
 
-    def draw(self):
+    def draw(self) -> None:
         self.window.screen.blit(self.image, self.attached_to.pos)
+
+    def rotate(self, angle: int) -> None:
+        self.image = pg.transform.rotate(self.image, angle)

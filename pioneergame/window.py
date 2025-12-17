@@ -1,4 +1,5 @@
 import pygame as pg
+from sys import exit
 
 
 # TODO: make surface class

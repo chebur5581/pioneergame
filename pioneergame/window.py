@@ -1,5 +1,5 @@
 import pygame as pg
-from sys import exit
+import sys
 
 
 # TODO: make surface class
@@ -39,7 +39,7 @@ class Window:
     def update(self, FPS: int = 60) -> int:
         for e in pg.event.get():
             if e.type == pg.QUIT or self.__close:
-                exit()
+                sys.exit()
 
         pg.display.flip()
         return self.clock.tick(FPS)

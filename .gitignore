@@ -1,6 +1,6 @@
 to_build
 *egg-info
-./build
-./dist
-./test/*
-.venv
+build/
+dist/
+test/*
+.venv/

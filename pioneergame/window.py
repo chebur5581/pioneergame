@@ -6,7 +6,10 @@ import sys
 # TODO: mouse scroll
 
 class Window:
+    instance = None
+
     def __init__(self, width, height, caption=None):
+        self.instance = self
         pg.init()
 
         self.width = width

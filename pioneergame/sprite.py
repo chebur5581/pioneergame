@@ -39,3 +39,8 @@ class Sprite:
 
     def rotate(self, angle: int) -> None:
         self.image = pg.transform.rotate(self.image, angle)
+
+    def get_rotated(self, angle: int) -> 'Sprite':
+        rotated = Sprite(self.window, self.image_path, self.size)
+        rotated.rotate(angle)
+        return rotated

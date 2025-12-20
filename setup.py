@@ -26,5 +26,5 @@ setup(
         'GitHub': 'https://github.com/chebur5581/pioneergame'
     },
     python_requires='>=3.9',
-    package_data={'pioneergame': ['Fixedsys.ttf', 'missing_texture.png']}
+    package_data={'pioneergame': ['Fixedsys.ttf', 'missing_texture.png', 'brick.png', 'yellow_tank.png', 'green_tank.png']}
 )

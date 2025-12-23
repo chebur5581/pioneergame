@@ -15,7 +15,7 @@ class Label:
         self.color = color
         self.text = text
         if not font:
-            self.font = pg.font.Font(resource_filename('pioneergame', 'Fixedsys.ttf'), size)
+            self.font = pg.font.Font(resource_filename('pioneergame', 'res/Fixedsys.ttf'), size)
         else:
             self.font = pg.font.SysFont(font, size, False, italic)
 

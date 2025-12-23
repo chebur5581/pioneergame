@@ -13,7 +13,7 @@ class Sprite:
         if image_path and exists(image_path):
             self.image = pg.image.load(image_path)
         else:
-            self.image = pg.image.load(resource_filename('pioneergame', 'res/missing_texture.png'))
+            self.image = pg.image.load(resource_filename('pioneergame', 'missing_texture.png'))
             # TODO: make non-stretchable pattern
 
         if size:

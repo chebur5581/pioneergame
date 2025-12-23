@@ -49,4 +49,20 @@ class Rect(pg.Rect):  # add class circle
         if abs(self.left - other.right) < collision_tolerance:
             return 'left'
 
-    # TODO: make collision resolving
+    def collide(self, other, collision_tolerance: int) -> None:
+        """Resolving rect collision with other rect"""
+
+        if not self.colliderect(other):
+            return
+
+        collision = self.collision(other, collision_tolerance)
+
+        match collision:
+            case "top":
+                self.top = other.bottom
+            case "bottom":
+                self.bottom = other.top
+            case "left":
+                self.left = other.right
+            case "right":
+                self.right = other.left

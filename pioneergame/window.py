@@ -3,7 +3,6 @@ import sys
 
 
 # TODO: make surface class
-# TODO: mouse scroll
 
 class Window:
     instance = None
@@ -31,6 +30,7 @@ class Window:
         self.bg_color = [0, 0, 0]  # the current background color required for other widgets that get the window color
 
         self.__close = False
+        self.__mouse_scroll_y = 0
 
     def get_fps(self) -> float:
         return self.clock.get_fps()
@@ -40,9 +40,12 @@ class Window:
         self.screen.fill(color)
 
     def update(self, FPS: int = 60) -> int:
+        self.__mouse_scroll_y = 0
         for e in pg.event.get():
             if e.type == pg.QUIT or self.__close:
                 sys.exit()
+            if e.type == pg.MOUSEWHEEL:
+                self.__mouse_scroll_y = e.y
 
         pg.display.flip()
         return self.clock.tick(FPS)
@@ -61,6 +64,10 @@ class Window:
 
     def get_mouse_button(self, button: str = 'left') -> bool:
         return pg.mouse.get_pressed()[self._mouse.index(button)]
+
+    def get_scroll(self) -> int:
+        """Returns scroll delta"""
+        return self.__mouse_scroll_y
 
     @staticmethod
     def mouse_position() -> pg.Vector2:

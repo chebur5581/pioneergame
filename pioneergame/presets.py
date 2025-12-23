@@ -58,7 +58,7 @@ class Bullet(Rect):
 
 class Player(Rect):
     def __init__(self, window: Window, x: float, y: float, width: int, height: int, sprite: Sprite,
-                 speed: int = 3, hp=5):
+                 speed: int = 3, hp=5, shoot_cooldown=60):
         super().__init__(window, x, y, width, height)
         self.speed = speed
 
@@ -76,6 +76,9 @@ class Player(Rect):
 
         self.hp_label = Label(self.window, 0, 0, f'{hp} HP', color='white')
         self.hp_label_rect = self.hp_label.get_rect()
+
+        self.shoot_cooldown = shoot_cooldown  # cooldown to shoot again
+        self.shoot_cooldown_counter = 0
 
     def go(self, direction: str) -> None:
         """go("up"), go("down"), go("left") or go("right")"""
@@ -101,6 +104,8 @@ class Player(Rect):
         self.sprite.attach_to(self)
 
     def draw(self) -> None:
+        self.shoot_cooldown_counter += 1
+
         self.sprite.draw()
 
         for bullet in Bullet.instances.copy():
@@ -150,5 +155,8 @@ class Player(Rect):
 
     def shoot(self):
         """Shooting with instance of Bullet"""
-        Bullet(self.window, self.centerx + self.direction[0] * self.width // 2 - 5,
-               self.centery + self.direction[1] * self.height // 2 - 5, direction=self.direction)
+        if self.shoot_cooldown_counter >= self.shoot_cooldown:  # if counter is overflowed
+            self.shoot_cooldown_counter = 0
+
+            Bullet(self.window, self.centerx + self.direction[0] * self.width // 2 - 5,
+                   self.centery + self.direction[1] * self.height // 2 - 5, direction=self.direction)

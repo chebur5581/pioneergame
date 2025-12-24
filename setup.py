@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='pioneergame',
-    version='0.0.23',
+    version='0.0.24',
     author='chebur5581',
     author_email='chebur5581@gmail.com',
     description='Simple Pygame wrap for small kids',
@@ -26,5 +26,5 @@ setup(
         'GitHub': 'https://github.com/chebur5581/pioneergame'
     },
     python_requires='>=3.9',
-    package_data={'pioneergame': ['Fixedsys.ttf', 'missing_texture.png', 'brick.png', 'yellow_tank.png', 'green_tank.png']}
+    package_data={'pioneergame': ['Fixedsys.ttf', 'missing_texture.png', 'brick.png', 'metal.png', 'bush.png', 'yellow_tank.png', 'green_tank.png']}
 )

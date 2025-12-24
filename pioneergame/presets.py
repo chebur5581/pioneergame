@@ -7,27 +7,73 @@ from .label import Label
 
 
 class Map:
-    """map of blocks by char map, # - meaning block"""
+    """map of blocks by char map\n
+    # - brick\n
+    W - unbreakable wall\n
+    $ - bush\n
+    @ - metal block
+    """
 
-    def __init__(self, window: Window, char_map: list[str], sprite: Sprite, block_size=50):
+    def __init__(self, window: Window, char_map: list[str], brick_sprite: Sprite,
+                 metal_sprite: Sprite, bush_sprite: Sprite, block_size=50):
         self.window = window
+
         self.charm_map = char_map
-        self.sprite = sprite
-        self.sprite.window = self.window
+
+        # brick
+        self.brick_sprite = brick_sprite
+        self.brick_sprite.window = self.window
+
+        # wall is just grey rect
+
+        # metal block
+        self.metal_sprite = metal_sprite
+        self.metal_sprite.window = self.window
+
+        # bush
+        self.bush_sprite = bush_sprite
+        self.bush_sprite.window = self.window
 
         self.block_size = block_size
 
         self.blocks = []
         for y, row in enumerate(self.charm_map):
             for x, char in enumerate(row):
-                if char == "#":
+                if char == "#":  # brick
                     self.blocks.append(
-                        Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size))
+                        Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
+                             color='orange'))
+                elif char == "W":  # unbreakable wall
+                    self.blocks.append(
+                        Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
+                             color='grey'))
+                elif char == "@":  # metal sprite
+                    self.blocks.append(
+                        Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
+                             color='white'))
+                elif char == "$":  # bush
+                    self.blocks.append(
+                        Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
+                             color='green'))
 
     def draw(self):
+        # type of block is knowed by color
+        # (255, 165, 0, 255) orange - brick
+        # (190, 190, 190, 255) grey - unbreakable wall
+        # (255, 255, 255, 255) white - metal
+        # (0, 255, 0, 255) green - bush
         for block in self.blocks:
-            self.sprite.attach_to(block)
-            self.sprite.draw()
+            if block.color == (255, 165, 0, 255):
+                self.brick_sprite.attach_to(block)
+                self.brick_sprite.draw()
+            elif block.color == (190, 190, 190, 255):
+                block.draw()
+            elif block.color == (255, 255, 255, 255):
+                self.metal_sprite.attach_to(block)
+                self.metal_sprite.draw()
+            elif block.color == (0, 255, 0, 255):
+                self.bush_sprite.attach_to(block)
+                self.bush_sprite.draw()
 
 
 class Bullet(Rect):
@@ -58,7 +104,7 @@ class Bullet(Rect):
 
 class Player(Rect):
     def __init__(self, window: Window, x: float, y: float, width: int, height: int, sprite: Sprite,
-                 speed: int = 3, hp=5, shoot_cooldown=60):
+                 speed: int = 3, hp=5, shoot_cooldown=40):
         super().__init__(window, x, y, width, height)
         self.speed = speed
 
@@ -143,14 +189,22 @@ class Player(Rect):
                 bullet.destroy()
 
     def collide_map(self, block_map: Map, collision_tolerance: int = 8):
-        """Char map collision"""
+        """Char map collision\n
+        Wall and Metal couldn't break\n
+        Bush couldn't collide"""
         for bullet in Bullet.instances.copy():
             rect = bullet.get_collision(block_map.blocks)
             if rect:
+                if rect.color == (255, 255, 255, 255) or rect.color == (190, 190, 190, 255):
+                    # if rect is wall or metal block, just destroy bullet
+                    bullet.destroy()
+                    continue
                 block_map.blocks.remove(rect)
                 bullet.destroy()
 
         for block in block_map.blocks.copy():
+            if block.color == (0, 255, 0, 255):  # if block is bush, no collision
+                continue
             self.collide(block, collision_tolerance)
 
     def shoot(self):

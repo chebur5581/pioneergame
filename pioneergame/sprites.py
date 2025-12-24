@@ -7,4 +7,6 @@ green_tank = Sprite(None, resource_filename('pioneergame', 'green_tank.png'))
 
 yellow_tank = Sprite(None, resource_filename('pioneergame', 'yellow_tank.png'))
 
-brick_sprte = Sprite(None, resource_filename('pioneergame', 'brick.png'))
+brick_sprite = Sprite(None, resource_filename('pioneergame', 'brick.png'))
+metal_sprite = Sprite(None, resource_filename('pioneergame', 'metal.png'))
+bush_sprite = Sprite(None, resource_filename('pioneergame', 'bush.png'))

@@ -32,8 +32,13 @@ class Label:
     def draw(self) -> None:
         self.window.screen.blit(self._text_surface, (self.x, self.y))
 
-    def draw_box(self) -> None:
+    def draw_outline(self) -> None:
+        """Drawing borders of rect"""
         pg.draw.rect(self.window.screen, (255, 0, 255), self.get_rect(), 1)
+
+    def draw_box(self, color: str | pg.Color | list[int, int, int] | tuple[int, int, int] = 'black'):
+        """Drawing filled rect"""
+        pg.draw.rect(self.window.screen, color, self.get_rect())
 
     @property
     def width(self) -> int:

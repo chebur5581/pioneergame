@@ -59,5 +59,14 @@ class Label:
     def bottom(self) -> int:
         return self.y + self._text_surface.get_rect().bottom
 
-    def get_rect(self) -> Rect:  # TODO: change tuple to Rect analog
+    def get_rect(self) -> Rect:
         return Rect(self.window, self.x, self.y, self.width, self.height)
+
+    @property
+    def center(self) -> tuple[int, int]:
+        return self.x + self.width // 2, self.y + self.height // 2
+
+    @center.setter
+    def center(self, pos: tuple[int, int]) -> None:
+        self.x = pos[0] - self.width // 2
+        self.y = pos[1] - self.height // 2

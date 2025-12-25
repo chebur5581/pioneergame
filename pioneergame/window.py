@@ -84,3 +84,7 @@ class Window:
     @staticmethod
     def set_caption(text) -> None:
         pg.display.set_caption(str(text))
+
+    @property
+    def center(self) -> tuple[int, int]:
+        return self.width // 2, self.height // 2

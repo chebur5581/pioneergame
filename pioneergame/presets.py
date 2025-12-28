@@ -46,7 +46,7 @@ class Map:
                 elif char == "W":  # unbreakable wall
                     self.blocks.append(
                         Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
-                             color='grey'))
+                             color='darkgray'))
                 elif char == "@":  # metal sprite
                     self.blocks.append(
                         Rect(self.window, x * self.block_size, y * block_size, self.block_size, self.block_size,
@@ -59,14 +59,14 @@ class Map:
     def draw(self):
         # type of block is knowed by color
         # (255, 165, 0, 255) orange - brick
-        # (190, 190, 190, 255) grey - unbreakable wall
+        # (169, 169, 169, 255) darkgrey - unbreakable wall
         # (255, 255, 255, 255) white - metal
         # (0, 255, 0, 255) green - bush
         for block in self.blocks:
             if block.color == (255, 165, 0, 255):
                 self.brick_sprite.attach_to(block)
                 self.brick_sprite.draw()
-            elif block.color == (190, 190, 190, 255):
+            elif block.color == (169, 169, 169, 255):
                 block.draw()
             elif block.color == (255, 255, 255, 255):
                 self.metal_sprite.attach_to(block)
@@ -195,7 +195,7 @@ class Player(Rect):
         for bullet in Bullet.instances.copy():
             rect = bullet.get_collision(block_map.blocks)
             if rect:
-                if rect.color == (255, 255, 255, 255) or rect.color == (190, 190, 190, 255):
+                if rect.color == (255, 255, 255, 255) or rect.color == (169, 168, 169, 255):
                     # if rect is wall or metal block, just destroy bullet
                     bullet.destroy()
                     continue

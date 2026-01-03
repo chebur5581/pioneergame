@@ -4,6 +4,7 @@ from .window import Window
 from .rect import Rect
 from os.path import exists
 
+# TODO: make sprite sequence or animation
 
 class Sprite:
     def __init__(self, window: Window, image_path: str = '', size: tuple[int, int] = None):

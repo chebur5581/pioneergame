@@ -195,7 +195,7 @@ class Player(Rect):
         for bullet in Bullet.instances.copy():
             rect = bullet.get_collision(block_map.blocks)
             if rect:
-                if rect.color == (255, 255, 255, 255) or rect.color == (169, 168, 169, 255):
+                if rect.color == (255, 255, 255, 255) or rect.color == (169, 169, 169, 255):
                     # if rect is wall or metal block, just destroy bullet
                     bullet.destroy()
                     continue

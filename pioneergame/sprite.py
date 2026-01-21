@@ -4,6 +4,7 @@ from .window import Window
 from .rect import Rect
 from os.path import exists
 
+
 # TODO: make sprite sequence or animation
 
 class Sprite:
@@ -20,6 +21,8 @@ class Sprite:
         if size:
             self.image = pg.transform.scale(self.image, size)
 
+        self.original_image = self.image
+        self.angle = 0
         self.attached_to = Rect(window, 0, 0, 0, 0)
 
     @property
@@ -36,12 +39,15 @@ class Sprite:
             self.set_size(rect.size)
 
     def draw(self) -> None:
-        self.window.screen.blit(self.image, self.attached_to.pos)
+        rect = self.image.get_rect(center=self.attached_to.center)
+        self.window.screen.blit(self.image, rect)
 
     def rotate(self, angle: int) -> None:
-        self.image = pg.transform.rotate(self.image, angle)
+        self.angle += angle
+        self.image = pg.transform.rotate(self.original_image, self.angle)
 
     def get_rotated(self, angle: int) -> 'Sprite':
         rotated = Sprite(self.window, self.image_path, self.size)
         rotated.rotate(angle)
+        rotated.attached_to = self.attached_to
         return rotated

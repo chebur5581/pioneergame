@@ -32,6 +32,7 @@ class Sprite:
     # TODO: make setter
     def set_size(self, size: tuple[int, int] | list[int, int]) -> None:
         self.image = pg.transform.scale(self.image, size)
+        self.original_image = pg.transform.scale(self.original_image, size)
 
     def attach_to(self, rect: Rect, resize=True) -> None:
         self.attached_to = rect

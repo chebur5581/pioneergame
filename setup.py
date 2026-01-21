@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='pioneergame',
-    version='0.0.29',
+    version='0.0.31',
     author='chebur5581',
     author_email='chebur5581@gmail.com',
     description='Simple Pygame wrap for small kids',
